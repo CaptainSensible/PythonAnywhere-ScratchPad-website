@@ -31,15 +31,13 @@
     </nav>
 
     <div class="container">
-    <div class="row">
-      This is the first dummy comment.
-    </div>
-    <div class="row">
-      Here is another comment, written by another dummy.
-    </div>
-    <div class="row">
-      The third comment...
-    </div>
+      
+      {% for comment in comments %}
+        <div class="row">
+          {{ comment }}
+        </div>
+        {% endfor %}
+
     <div class="row">
       <form action="." method="POST">
         <textarea  class="form-control" name="contents" placeholder="Enter a comment"></textarea>
