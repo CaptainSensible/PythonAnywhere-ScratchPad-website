@@ -26,7 +26,16 @@
     </nav>
     <div class="container">
       <div class="row"
+
       <!--username/password log in starts here-->
+
+      <!--I dont know if this is python or bootcamp stuff but it is refering to python code written on the flask_app.py file for a variable we created there during log in--> 
+      {% if error %}
+        <div class="alert alert-warning" role="alert">
+          Incorrect username or password, you dummy.
+        </div>
+      {% endif %}
+
         <form action="." method="post">
           <div class="form-group">
           <!--Username entry-->
