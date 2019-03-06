@@ -1,7 +1,8 @@
 
 from flask import Flask, render_template, redirect, request, url_for
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import login_user, LoginManager, UserMixin, logout_user, login_required #Imports Flask-Login, a framework for loging in configuration.
+from flask_login import login_user, LoginManager, UserMixin, logout_user, login_required, current_user
+#Imports Flask-Login, a framework for loging in configuration.
 # for info on this "Flask-Login" extension check below tutorial (about 1/6 down page) starts with "Doing something with login and logout"
 #https://blog.pythonanywhere.com/158/
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -68,6 +69,9 @@ class Comment(db.Model):
 def index():
     if request.method =="GET":
         return render_template("index.html", comments=Comment.query.all())
+
+    if not current_user.is_authenticated:
+        return redirect(url_for("index"))
 
     comment= Comment(content=request.form["contents"])
     db.session.add(comment)
