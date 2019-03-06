@@ -1,7 +1,7 @@
 
 from flask import Flask, render_template, redirect, request, url_for
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import login_user, LoginManager, UserMixin #Imports Flask-Login, a framework for loging in configuration.
+from flask_login import login_user, LoginManager, UserMixin, logout_user, login_required #Imports Flask-Login, a framework for loging in configuration.
 # for info on this "Flask-Login" extension check below tutorial (about 1/6 down page) starts with "Doing something with login and logout"
 #https://blog.pythonanywhere.com/158/
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -43,6 +43,12 @@ all_users = {
     "bob" : User("bob", generate_password_hash("less-secret")),
     "caroline" : User("caroline", generate_password_hash("completely-secret")),
     }
+
+@app.route("/logout/")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("index"))
 
 @login_manager.user_loader
 def load_user(user_id):
