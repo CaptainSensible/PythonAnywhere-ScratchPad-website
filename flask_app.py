@@ -1,8 +1,10 @@
 
+#This all comes from https://blog.pythonanywhere.com/121/ and part 2 of this tutorial
+
 from flask import Flask, render_template, redirect, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import login_user, LoginManager, UserMixin, logout_user, login_required, current_user
-#Imports Flask-Login, a framework for loging in configuration.
+# Imports Flask-Login, a framework for loging in configuration.
 # for info on this "Flask-Login" extension check below tutorial (about 1/6 down page) starts with "Doing something with login and logout"
 #https://blog.pythonanywhere.com/158/
 from werkzeug.security import check_password_hash, generate_password_hash
