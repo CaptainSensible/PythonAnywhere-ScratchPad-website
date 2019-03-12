@@ -3,6 +3,7 @@
 
 from flask import Flask, render_template, redirect, request, url_for
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from flask_login import login_user, LoginManager, UserMixin, logout_user, login_required, current_user
 # Imports Flask-Login, a framework for loging in configuration.
 # for info on this "Flask-Login" extension check below tutorial (about 1/6 down page) starts with "Doing something with login and logout"
@@ -24,6 +25,7 @@ app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 app.secret_key = "1234567890qwertyuiop" #These 3 lines deal with "Flask-Login.
 login_manager = LoginManager()
